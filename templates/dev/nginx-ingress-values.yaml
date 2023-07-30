@@ -1,0 +1,23 @@
+controller:
+  service:
+    type: LoadBalancer
+    targetPorts:
+      http: http
+      https: https
+    enableHttp: true
+    enableHttps: true
+    annotations:
+      service.beta.kubernetes.io/aws-load-balancer-name: nlb-apse1-az12-dev-project-test-nginx
+      service.beta.kubernetes.io/aws-load-balancer-type: external
+      service.beta.kubernetes.io/aws-load-balancer-scheme: internal
+      service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
+      service.beta.kubernetes.io/aws-load-balancer-internal: "true"
+      service.beta.kubernetes.io/aws-load-balancer-subnets: "subnet-,subnet-"
+      service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
+      service.beta.kubernetes.io/aws-load-balancer-ssl-cert: arn:aws:acm:ap-southeast-1:${accountID}:certificate/${id}
+      service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "443"
+      service.beta.kubernetes.io/aws-load-balancer-healthcheck-protocol: http
+      service.beta.kubernetes.io/aws-load-balancer-healthcheck-path: /
+      service.beta.kubernetes.io/aws-load-balancer-healthcheck-port: "80"
+      service.beta.kubernetes.io/aws-load-balancer-backend-protocol: ssl
+      service.beta.kubernetes.io/aws-load-balancer-ssl-negotiation-policy: ELBSecurityPolicy-TLS13-1-2-2021-06

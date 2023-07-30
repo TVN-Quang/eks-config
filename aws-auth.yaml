@@ -1,0 +1,16 @@
+apiVersion: v1
+data:
+  mapRoles: |
+    - groups:
+      - system:bootstrappers
+      - system:nodes
+      rolearn: arn:aws:iam::${accountID}:role/iam-role-dev-project-test-node-group
+      username: system:node:{{EC2PrivateDNSName}}
+    - "groups":
+      - "dev"
+      "rolearn": "arn:aws:iam::${accountID}:role/${rolename}"
+      "username": "user"
+kind: ConfigMap
+metadata:
+  name: aws-auth
+  namespace: kube-system

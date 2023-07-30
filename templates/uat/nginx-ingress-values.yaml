@@ -1,0 +1,16 @@
+controller:
+  service:
+    type: LoadBalancer
+    targetPorts:
+      http: http
+      https: http
+    enableHttp: true
+    enableHttps: true
+    annotations:
+      service.beta.kubernetes.io/aws-load-balancer-name: nlb-apse1-test-eks-nginx-ingress
+      service.beta.kubernetes.io/aws-load-balancer-type: external
+      service.beta.kubernetes.io/aws-load-balancer-scheme: internal
+      service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
+      service.beta.kubernetes.io/aws-load-balancer-internal: "true"
+      service.beta.kubernetes.io/aws-load-balancer-subnets: "subnet-,subnet-"
+      service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
